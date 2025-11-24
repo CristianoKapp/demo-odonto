@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo Odonto • Clínica Sorriso</title>
+  <style>
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#1167b1;--muted:#6b7280;--radius:14px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);color:#0f1724}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:1100px;margin:20px auto}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#dbeefe,#b6daf9);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(17,103,177,0.12)}
+    .logo svg{width:34px;height:34px}
+    .brand h1{font-size:18px;margin:0;color:var(--accent)}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
+
+    main{max-width:1100px;margin:0 auto;padding:10px}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 30px rgba(9,10,31,0.04)}
+    .hero{padding:26px 18px;border-radius:14px;display:flex;flex-direction:column;gap:14px}
+    .hero h2{margin:0;font-size:20px;color:#072b4f}
+    .hero p{margin:0;color:var(--muted)}
+
+    .services{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+    .svc{flex:0 1 48%;background:#f5f9ff;padding:10px;border-radius:10px;font-size:14px;color:#103a6b}
+
+    /* appointment column */
+    .aside{position:sticky;top:22px}
+    .aside h3{margin:0 0 6px 0}
+    label{display:block;font-size:13px;color:var(--muted);margin-top:8px}
+    input[type=text], input[type=tel], select, input[type=date], input[type=time]{width:100%;padding:10px;border-radius:10px;border:1px solid #e6eef9;background:#fcfeff}
+    .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+    .muted{font-size:13px;color:var(--muted)}
+
+    .examples{display:flex;gap:10px;margin-top:12px}
+    .example-card{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef6ff}
+    .example-card h4{margin:0 0 6px 0;font-size:14px}
+    .example-card p{margin:0;color:var(--muted);font-size:13px}
+
+    footer{max-width:1100px;margin:24px auto;padding:12px 24px;color:var(--muted)}
+
+    /* responsive */
+    @media(max-width:900px){.grid{grid-template-columns:1fr;}.aside{position:static}.brand h1{font-size:16px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden>
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g)"/><path d="M14 28c3-5 10-7 16-4" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#2aa5ff"/><stop offset="1" stop-color="#6aa6ff"/></linearGradient></defs></svg>
+      </div>
+      <div>
+        <h1>Clínica Sorriso • Demo</h1>
+        <p class="muted">Layout de demonstração para clínicas odontológicas</p>
+      </div>
+    </div>
+    <div class="muted">Contato: (42) 99960-0856</div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section>
+        <div class="card hero">
+          <h2>Site pronto para sua clínica — agendamento rápido e profissional</h2>
+          <p>Este modelo demonstra a versão móvel de um site de clínica odontológica: apresentação de serviços, equipe, e agendamento simples que envia confirmação pelo WhatsApp.</p>
+
+          <div class="services">
+            <div class="svc">Avaliação e Diagnóstico</div>
+            <div class="svc">Limpeza e Profilaxia</div>
+            <div class="svc">Clareamento Dental</div>
+            <div class="svc">Ortodontia</div>
+            <div class="svc">Próteses e Implantes</div>
+            <div class="svc">Urgência Odontológica</div>
+          </div>
+
+          <div style="margin-top:14px" class="examples">
+            <div class="example-card">
+              <h4>Por que funciona</h4>
+              <p>Pacientes preferem marcar online; reduz ligações e faltas. A clínica ganha profissionalismo e controle da agenda.</p>
+            </div>
+            <div class="example-card">
+              <h4>Benefícios</h4>
+              <p>Agendamento 24h • Menos faltas • Menos confusão por WhatsApp • Melhora a imagem da clínica</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin:0 0 8px 0">Como funciona (resumido)</h3>
+          <p class="muted">O paciente escolhe serviço, data e horário. O sistema valida disponibilidade e gera uma mensagem automática para o WhatsApp da clínica com os dados do agendamento.</p>
+          <ol style="margin:10px 0 0 18px;color:var(--muted)">
+            <li>Paciente seleciona serviço e horário</li>
+            <li>Confirmação enviada para a clínica via WhatsApp</li>
+            <li>Clínica confirma o agendamento</li>
+          </ol>
+        </div>
+      </section>
+
+      <aside class="aside">
+        <div class="card">
+          <h3>Agende um horário (demo)</h3>
+          <p class="muted">Teste o fluxo: escolha serviço, data e horário. Ao confirmar, será aberto o WhatsApp com a mensagem pronta.</p>
+
+          <form id="bookingForm">
+            <label for="service">Serviço</label>
+            <select id="service" required>
+              <option value="">Selecione</option>
+              <option>Consulta e Avaliação</option>
+              <option>Limpeza Dental</option>
+              <option>Clareamento</option>
+              <option>Ortodontia - Aparelho</option>
+              <option>Implante/Prótese</option>
+            </select>
+
+            <label for="name">Nome do paciente</label>
+            <input id="name" type="text" placeholder="Nome completo" required />
+
+            <label for="phone">Telefone (WhatsApp)</label>
+            <input id="phone" type="tel" placeholder="(DD) 9xxxx-xxxx" required />
+
+            <label for="date">Data</label>
+            <input id="date" type="date" required />
+
+            <label for="time">Horário</label>
+            <input id="time" type="time" required />
+
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button type="submit" class="btn">Confirmar agendamento</button>
+              <button id="clearBtn" type="button" style="background:#eef6ff;color:var(--accent);border:1px solid #d9ecff;padding:10px 12px;border-radius:10px">Limpar</button>
+            </div>
+
+            <p id="feedback" style="margin-top:10px;font-size:13px;color:var(--muted)"></p>
+          </form>
+
+          <hr style="margin:14px 0;border:none;border-top:1px solid #eff6ff" />
+          <p class="muted" style="font-size:13px">Demo criada por Cristiano — adapta facilmente para sua clínica com identidade visual e integração real de agenda.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="muted">Este é um demo funcional — personalize cores, textos e telefone. Para integrar com agenda real e painel administrativo entre em contato.</div>
+  </footer>
+
+  <script>
+    // Demo flow: validates basic fields, builds WhatsApp message and opens wa.me link
+    const form = document.getElementById('bookingForm');
+    const feedback = document.getElementById('feedback');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // clinic whatsapp (use seu número com DDI +55) 
+    const clinicWhats = '5542999600856'; // +55 42 99960-0856
+
+    function sanitizePhone(p){return p.replace(/[^0-9]+/g,'');}
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const service = document.getElementById('service').value;
+      const name = document.getElementById('name').value.trim();
+      const phone = sanitizePhone(document.getElementById('phone').value);
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      if(!service || !name || !phone || !date || !time){
+        feedback.textContent = 'Por favor, preencha todos os campos.';
+        return;
+      }
+
+      // simple availability simulation (disallow past dates/times)
+      const selected = new Date(date + 'T' + time);
+      const now = new Date();
+      if(selected < now){
+        feedback.textContent = 'Escolha uma data/horário futuros.';
+        return;
+      }
+
+      feedback.textContent = 'Gerando confirmação...';
+
+      // build message
+      const message = `Agendamento: %0A*Serviço*: ${encodeURIComponent(service)}%0A*Paciente*: ${encodeURIComponent(name)}%0A*Contato*: ${encodeURIComponent(phone)}%0A*Data*: ${encodeURIComponent(date)}%0A*Horário*: ${encodeURIComponent(time)}%0A%0APor favor, confirmar.`;
+
+      // open whatsapp with message to clinic
+      const url = `https://wa.me/${clinicWhats}?text=${message}`;
+      setTimeout(()=>{ window.open(url,'_blank'); feedback.textContent = 'Abrindo WhatsApp com a mensagem para a clínica.'; },600);
+    });
+
+    clearBtn.addEventListener('click', ()=>{ form.reset(); feedback.textContent = ''; });
+  </script>
+</body>
+</html>
