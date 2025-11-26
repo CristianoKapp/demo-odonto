@@ -1,193 +1,595 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Demo Odonto • Clínica Sorriso</title>
-  <style>
-    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#1167b1;--muted:#6b7280;--radius:14px}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);color:#0f1724}
-    header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:1100px;margin:20px auto}
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#dbeefe,#b6daf9);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(17,103,177,0.12)}
-    .logo svg{width:34px;height:34px}
-    .brand h1{font-size:18px;margin:0;color:var(--accent)}
-    .brand p{margin:0;font-size:13px;color:var(--muted)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica OdontoSaúde - Agendamento Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    main{max-width:1100px;margin:0 auto;padding:10px}
-    .grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
 
-    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 30px rgba(9,10,31,0.04)}
-    .hero{padding:26px 18px;border-radius:14px;display:flex;flex-direction:column;gap:14px}
-    .hero h2{margin:0;font-size:20px;color:#072b4f}
-    .hero p{margin:0;color:var(--muted)}
+        header {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            color: white;
+            padding: 2.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
 
-    .services{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
-    .svc{flex:0 1 48%;background:#f5f9ff;padding:10px;border-radius:10px;font-size:14px;color:#103a6b}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* appointment column */
-    .aside{position:sticky;top:22px}
-    .aside h3{margin:0 0 6px 0}
-    label{display:block;font-size:13px;color:var(--muted);margin-top:8px}
-    input[type=text], input[type=tel], select, input[type=date], input[type=time]{width:100%;padding:10px;border-radius:10px;border:1px solid #e6eef9;background:#fcfeff}
-    .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
-    .muted{font-size:13px;color:var(--muted)}
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
 
-    .examples{display:flex;gap:10px;margin-top:12px}
-    .example-card{flex:1;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef6ff}
-    .example-card h4{margin:0 0 6px 0;font-size:14px}
-    .example-card p{margin:0;color:var(--muted);font-size:13px}
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-top: 0.5rem;
+        }
 
-    footer{max-width:1100px;margin:24px auto;padding:12px 24px;color:var(--muted)}
+        .hero {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
 
-    /* responsive */
-    @media(max-width:900px){.grid{grid-template-columns:1fr;}.aside{position:static}.brand h1{font-size:16px}}
-  </style>
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-images {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-images img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .services {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+
+        .services h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #2c5282;
+            margin-bottom: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .service-card h4 {
+            color: #2c5282;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .agendamento {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .agendamento h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #2c5282;
+            margin-bottom: 2rem;
+        }
+
+        .form-agendamento {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c5282;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #3182ce;
+        }
+
+        .btn-agendar {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-agendar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+        }
+
+        .btn-agendar:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        /* Tablets e telas médias */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .form-agendamento {
+                padding: 1.5rem;
+            }
+
+            .hero-images {
+                gap: 1.5rem;
+            }
+
+            .hero-images img {
+                max-width: 300px;
+            }
+        }
+
+        /* Tablets pequenos e celulares grandes */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 0;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-images {
+                gap: 1rem;
+            }
+
+            .hero-images img {
+                max-width: 100%;
+            }
+
+            .services, .agendamento {
+                padding: 2rem 0;
+            }
+
+            .services h3, .agendamento h3 {
+                font-size: 1.6rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+        }
+
+        /* Celulares */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .services h3, .agendamento h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .form-agendamento {
+                padding: 1.2rem;
+            }
+
+            .form-group label {
+                font-size: 0.95rem;
+            }
+
+            .form-group select,
+            .form-group input {
+                padding: 0.65rem;
+                font-size: 0.95rem;
+            }
+
+            .btn-agendar {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .service-card {
+                padding: 1.2rem;
+            }
+
+            .service-card h4 {
+                font-size: 1.1rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .whatsapp-float svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            footer {
+                padding: 1.5rem 0;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Telas muito grandes */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1300px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div class="logo" aria-hidden>
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g)"/><path d="M14 28c3-5 10-7 16-4" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#2aa5ff"/><stop offset="1" stop-color="#6aa6ff"/></linearGradient></defs></svg>
-      </div>
-      <div>
-        <h1>Clínica Sorriso • Demo</h1>
-        <p class="muted">Layout de demonstração para clínicas odontológicas</p>
-      </div>
-    </div>
-    <div class="muted">Contato: (42) 99960-0856</div>
-  </header>
-
-  <main>
-    <div class="grid">
-      <section>
-        <div class="card hero">
-          <h2>Site pronto para sua clínica — agendamento rápido e profissional</h2>
-          <p>Este modelo demonstra a versão móvel de um site de clínica odontológica: apresentação de serviços, equipe, e agendamento simples que envia confirmação pelo WhatsApp.</p>
-
-          <div class="services">
-            <div class="svc">Avaliação e Diagnóstico</div>
-            <div class="svc">Limpeza e Profilaxia</div>
-            <div class="svc">Clareamento Dental</div>
-            <div class="svc">Ortodontia</div>
-            <div class="svc">Próteses e Implantes</div>
-            <div class="svc">Urgência Odontológica</div>
-          </div>
-
-          <div style="margin-top:14px" class="examples">
-            <div class="example-card">
-              <h4>Por que funciona</h4>
-              <p>Pacientes preferem marcar online; reduz ligações e faltas. A clínica ganha profissionalismo e controle da agenda.</p>
-            </div>
-            <div class="example-card">
-              <h4>Benefícios</h4>
-              <p>Agendamento 24h • Menos faltas • Menos confusão por WhatsApp • Melhora a imagem da clínica</p>
-            </div>
-          </div>
+    <header>
+        <div class="container">
+            <h1>Clínica OdontoSaúde</h1>
+            <p>Cuidando do seu sorriso com excelência e profissionalismo</p>
         </div>
+    </header>
 
-        <div class="card" style="margin-top:16px">
-          <h3 style="margin:0 0 8px 0">Como funciona (resumido)</h3>
-          <p class="muted">O paciente escolhe serviço, data e horário. O sistema valida disponibilidade e gera uma mensagem automática para o WhatsApp da clínica com os dados do agendamento.</p>
-          <ol style="margin:10px 0 0 18px;color:var(--muted)">
-            <li>Paciente seleciona serviço e horário</li>
-            <li>Confirmação enviada para a clínica via WhatsApp</li>
-            <li>Clínica confirma o agendamento</li>
-          </ol>
-        </div>
-      </section>
-
-      <aside class="aside">
-        <div class="card">
-          <h3>Agende um horário (demo)</h3>
-          <p class="muted">Teste o fluxo: escolha serviço, data e horário. Ao confirmar, será aberto o WhatsApp com a mensagem pronta.</p>
-
-          <form id="bookingForm">
-            <label for="service">Serviço</label>
-            <select id="service" required>
-              <option value="">Selecione</option>
-              <option>Consulta e Avaliação</option>
-              <option>Limpeza Dental</option>
-              <option>Clareamento</option>
-              <option>Ortodontia - Aparelho</option>
-              <option>Implante/Prótese</option>
-            </select>
-
-            <label for="name">Nome do paciente</label>
-            <input id="name" type="text" placeholder="Nome completo" required />
-
-            <label for="phone">Telefone (WhatsApp)</label>
-            <input id="phone" type="tel" placeholder="(DD) 9xxxx-xxxx" required />
-
-            <label for="date">Data</label>
-            <input id="date" type="date" required />
-
-            <label for="time">Horário</label>
-            <input id="time" type="time" required />
-
-            <div style="margin-top:12px;display:flex;gap:8px">
-              <button type="submit" class="btn">Confirmar agendamento</button>
-              <button id="clearBtn" type="button" style="background:#eef6ff;color:var(--accent);border:1px solid #d9ecff;padding:10px 12px;border-radius:10px">Limpar</button>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Seu Sorriso em Boas Mãos</h2>
+                <p>Oferecemos tratamentos odontológicos de qualidade com equipamentos modernos e profissionais experientes.</p>
+                <div class="hero-images">
+                    <img src="https://i.imgur.com/bPxsPtz.jpeg" alt="Sorriso saudável">
+                    <img src="https://i.imgur.com/uazC5Wh.jpeg" alt="Tratamento odontológico">
+                </div>
             </div>
-
-            <p id="feedback" style="margin-top:10px;font-size:13px;color:var(--muted)"></p>
-          </form>
-
-          <hr style="margin:14px 0;border:none;border-top:1px solid #eff6ff" />
-          <p class="muted" style="font-size:13px">Demo criada por Cristiano — adapta facilmente para sua clínica com identidade visual e integração real de agenda.</p>
         </div>
-      </aside>
-    </div>
-  </main>
+    </section>
 
-  <footer>
-    <div class="muted">Este é um demo funcional — personalize cores, textos e telefone. Para integrar com agenda real e painel administrativo entre em contato.</div>
-  </footer>
+    <section class="services">
+        <div class="container">
+            <h3>Nossos Serviços</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Limpeza e Prevenção</h4>
+                    <p>Profilaxia completa para manter sua saúde bucal em dia.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Clareamento Dental</h4>
+                    <p>Recupere o branco natural dos seus dentes com segurança.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Ortodontia</h4>
+                    <p>Aparelhos fixos e móveis para alinhamento dental perfeito.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Implantes</h4>
+                    <p>Reabilitação oral com implantes de última geração.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Restaurações</h4>
+                    <p>Tratamento de cáries e restaurações estéticas.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Próteses Dentárias</h4>
+                    <p>Soluções personalizadas para substituição de dentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // Demo flow: validates basic fields, builds WhatsApp message and opens wa.me link
-    const form = document.getElementById('bookingForm');
-    const feedback = document.getElementById('feedback');
-    const clearBtn = document.getElementById('clearBtn');
+    <section class="agendamento">
+        <div class="container">
+            <h3>Agende sua Consulta</h3>
+            <div class="form-agendamento">
+                <div id="alert" class="alert"></div>
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+                </div>
 
-    // clinic whatsapp (use seu número com DDI +55) 
-    const clinicWhats = '5542999600856'; // +55 42 99960-0856
+                <div class="form-group">
+                    <label for="servico">Selecione o Serviço</label>
+                    <select id="servico" required>
+                        <option value="">Escolha um serviço</option>
+                        <option value="Limpeza e Prevenção">Limpeza e Prevenção</option>
+                        <option value="Clareamento Dental">Clareamento Dental</option>
+                        <option value="Ortodontia - Consulta">Ortodontia - Consulta</option>
+                        <option value="Implantes - Avaliação">Implantes - Avaliação</option>
+                        <option value="Restauração">Restauração</option>
+                        <option value="Prótese Dentária">Prótese Dentária</option>
+                        <option value="Extração">Extração</option>
+                        <option value="Canal">Tratamento de Canal</option>
+                        <option value="Emergência">Emergência Odontológica</option>
+                    </select>
+                </div>
 
-    function sanitizePhone(p){return p.replace(/[^0-9]+/g,'');}
+                <div class="form-group">
+                    <label for="data">Data da Consulta</label>
+                    <input type="date" id="data" required>
+                </div>
 
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const service = document.getElementById('service').value;
-      const name = document.getElementById('name').value.trim();
-      const phone = sanitizePhone(document.getElementById('phone').value);
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
+                <div class="form-group">
+                    <label for="horario">Horário Disponível</label>
+                    <select id="horario" required>
+                        <option value="">Escolha um horário</option>
+                    </select>
+                </div>
 
-      if(!service || !name || !phone || !date || !time){
-        feedback.textContent = 'Por favor, preencha todos os campos.';
-        return;
-      }
+                <button class="btn-agendar" id="btnAgendar" disabled>Confirmar Agendamento</button>
+            </div>
+        </div>
+    </section>
 
-      // simple availability simulation (disallow past dates/times)
-      const selected = new Date(date + 'T' + time);
-      const now = new Date();
-      if(selected < now){
-        feedback.textContent = 'Escolha uma data/horário futuros.';
-        return;
-      }
+    <a href="https://wa.me/5542999600856" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="white">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.825.738 5.482 2.033 7.792L0 32l8.448-2.016A15.904 15.904 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.344c-2.59 0-5.052-.752-7.146-2.048l-.512-.304-5.304 1.264 1.296-4.992-.336-.528A13.248 13.248 0 0 1 2.656 16c0-7.344 5.984-13.344 13.344-13.344 7.344 0 13.344 6 13.344 13.344 0 7.344-6 13.344-13.344 13.344zm7.296-9.984c-.4-.2-2.368-1.168-2.736-1.296-.368-.144-.64-.2-.912.2-.272.4-1.056 1.296-1.296 1.568-.24.256-.48.288-.88.096-.4-.2-1.696-.624-3.232-1.984-1.2-1.056-2-2.368-2.24-2.768-.24-.4-.024-.608.176-.8.176-.176.4-.464.6-.688.2-.24.272-.4.4-.656.144-.272.08-.512-.032-.72-.112-.2-1.024-2.448-1.408-3.344-.368-.864-.752-.752-1.024-.768h-.88c-.272 0-.72.096-1.088.48-.368.4-1.408 1.36-1.408 3.344 0 1.968 1.44 3.872 1.632 4.144.208.272 2.784 4.32 6.784 6.048 2.528 1.088 3.504 1.12 4.768.944 1.008-.144 2.368-.96 2.704-1.888.336-.928.336-1.728.24-1.888-.08-.144-.336-.24-.736-.432z"/>
+        </svg>
+    </a>
 
-      feedback.textContent = 'Gerando confirmação...';
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Clínica OdontoSaúde - Todos os direitos reservados</p>
+        </div>
+    </footer>
 
-      // build message
-      const message = `Agendamento: %0A*Serviço*: ${encodeURIComponent(service)}%0A*Paciente*: ${encodeURIComponent(name)}%0A*Contato*: ${encodeURIComponent(phone)}%0A*Data*: ${encodeURIComponent(date)}%0A*Horário*: ${encodeURIComponent(time)}%0A%0APor favor, confirmar.`;
+    <script>
+        // Gerar horários de 08:00 às 18:00 a cada 15 minutos
+        const selectHorario = document.getElementById('horario');
+        
+        for (let h = 8; h < 18; h++) {
+            for (let m = 0; m < 60; m += 15) {
+                const hora = h.toString().padStart(2, '0');
+                const minuto = m.toString().padStart(2, '0');
+                const horario = `${hora}:${minuto}`;
+                
+                const option = document.createElement('option');
+                option.value = horario;
+                option.textContent = horario;
+                selectHorario.appendChild(option);
+            }
+        }
 
-      // open whatsapp with message to clinic
-      const url = `https://wa.me/${clinicWhats}?text=${message}`;
-      setTimeout(()=>{ window.open(url,'_blank'); feedback.textContent = 'Abrindo WhatsApp com a mensagem para a clínica.'; },600);
-    });
+        function validarFormulario() {
+            const nome = document.getElementById('nome').value;
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horario').value;
+            const btnAgendar = document.getElementById('btnAgendar');
+            
+            if (nome && servico && data && horario) {
+                btnAgendar.disabled = false;
+            } else {
+                btnAgendar.disabled = true;
+            }
+        }
 
-    clearBtn.addEventListener('click', ()=>{ form.reset(); feedback.textContent = ''; });
-  </script>
+        // Definir data mínima como hoje
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('data').setAttribute('min', hoje);
+
+        document.getElementById('nome').addEventListener('input', validarFormulario);
+        document.getElementById('servico').addEventListener('change', validarFormulario);
+        document.getElementById('data').addEventListener('change', validarFormulario);
+        document.getElementById('horario').addEventListener('change', validarFormulario);
+
+        document.getElementById('btnAgendar').addEventListener('click', function() {
+            const nome = document.getElementById('nome').value;
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horario').value;
+            
+            // Formatar data para DD/MM/YYYY
+            const dataObj = new Date(data + 'T00:00:00');
+            const dataFormatada = `${dataObj.getDate().toString().padStart(2, '0')}/${(dataObj.getMonth() + 1).toString().padStart(2, '0')}/${dataObj.getFullYear()}`;
+            
+            // Montar mensagem para WhatsApp
+            const mensagem = `Olá! Gostaria de agendar uma consulta.
+
+*Nome:* ${nome}
+*Serviço:* ${servico}
+*Data:* ${dataFormatada}
+*Horário:* ${horario}
+
+Aguardo confirmação da disponibilidade. Obrigado!`;
+            
+            const whatsappUrl = `https://wa.me/5542999600856?text=${encodeURIComponent(mensagem)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Mostrar alerta de sucesso
+            const alert = document.getElementById('alert');
+            alert.className = 'alert success';
+            alert.style.display = 'block';
+            alert.textContent = 'Redirecionando para o WhatsApp...';
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
